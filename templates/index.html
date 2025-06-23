@@ -207,8 +207,8 @@
     <div class="container is-max-desktop">
         <div class="hero-body">
             <div style="text-align: center;">
-                <img src="static/images/Predict3b.svg" alt="The PredictaBoard framework"
-                     style="width: 80%;">
+                <img src="static/images/Predict3c_web.png" alt="The PredictaBoard framework"
+                     style="width: 70%;">
             </div>
             <h2 class="subtitle is-4 has-text-justified">
                 We introduce PredictaBoard, a novel benchmarking framework that simultaneously evaluates an LLM's score
@@ -218,6 +218,7 @@
                 Thus, PredictaBoard shifts the focus from average performance and promotes the
                 development of AI systems that enable the anticipation of errors
                 —an essential consideration for high-stakes scenarios.
+                To contribute to the PredictaBoard project, please see <a href="https://github.com/Kinds-of-Intelligence-CFI/PredictaBoard">this repo</a>.
             </h2>
         </div>
     </div>
@@ -272,7 +273,7 @@
 
                 <div style="text-align: center;">
                     <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0px; margin-bottom: 0px;">
-                        <img src="static/images/Assessors4.svg" alt="How an assessor is trained"
+                        <img src="static/images/Assessors4_web.png" alt="How an assessor is trained"
                              style="width: 40%;">
                     </div>
                 </div>
@@ -295,8 +296,7 @@
                     For a fixed error tolerance (e.g., 20%), we can then compute the highest non-rejection rate that
                     leads
                     to an error below the tolerance. We call this the Predictably Valid Region (PVR).
-                    Moreover, to consider multiple rejection thresholds, we can compute the Area Under the ARC (AUARC)
-                    curve.
+                    Moreover, to consider multiple rejection thresholds, we can compute the Area Under the ARC (AUARC).
                     <br><br>
                     PredictaBoard also includes other metrics that independently score the assessor or the LLM, but the
                     ARC
@@ -311,7 +311,7 @@
                 </div>
                 <p style="margin-top: 1rem;">
                     In the plot above, each system corresponds to a LLM-assessor pair.
-                    Systems A and B have overall accuracy a and b respectively, with b larger than A. However, for an
+                    Systems A and B have overall accuracy a and b respectively, with b larger than a. However, for an
                     error tolerance of 20%,
                     System A has a larger non-rejection rate. We say therefore that System A's 0.8 PVR is larger than
                     System B's
@@ -327,19 +327,12 @@
 <section class="hero is-small">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title is-3 has-text-centered">Findings</h1>
+            <h1 class="title is-3 has-text-centered">Leaderboards</h1>
             <p>
-                We perform experiments with a set of baseline assessors based on various text embeddings approaches and
-                41 LLMs. PredictaBoard includes the <a
-                    href="https://github.com/Kinds-of-Intelligence-CFI/PredictaBoard">code</a>
-                to train those assessors and the <a
-                    href="https://huggingface.co/collections/kvoudouris/predictaboard-67b6042ee09a99a3b0bbebd0">instance-level
-                LLM results</a>
-                on <a href="https://huggingface.co/datasets/TIGER-Lab/MMLU-Pro">MMLU-Pro</a> and <a
-                    href="https://github.com/suzgunmirac/BIG-Bench-Hard">Big-Bench Hard (BBH)</a>.
-                This allows researchers to work on improving assessors or LLMs independently.
-                A split of MMLU-Pro is used to train assessors and another one to test them; instead, BBH is kept as
-                Out-Of-Distribution dataset.
+                Predictaboard uses a split of MMLU-Pro to train assessors and another one to test them; instead, BBH is kept as Out-Of-Distribution dataset. The in-distribution and out-of-distribution leaderboards below show the Predictably Valid Region (PVR) of the considered LLM-assessor pairs for three minimum accuracy thresholds (0.8, 0.9, 0.95) and the Area Under the ARC (AUARC).
+                <br><br>Our initial results use a set of baseline assessors based on various text embeddings approaches and
+                41 LLMs. 
+                Our <a href="https://github.com/Kinds-of-Intelligence-CFI/PredictaBoard">project repo</a> makes it easy to contribute new LLMs or assessors, test them on this fixed setup, and add them to the leaderboards. Please refer to instructions in the repo.
             </p>
         </div>
     </div>
@@ -353,17 +346,9 @@
                 <h1 class="title is-4 has-text-centered">
                     <b>In-distribution results</b>
                 </h1>
-
-                <div style="width: 100%; margin: 0 auto;">
-                    {% set leaderboard = leaderboard_ID %}
-                    {% set all_llms = all_llms %}
-                    {% set all_methods = all_methods %}
-                    {% set all_features = all_features %}
-                    {% include "leaderboard.html" %}
-                </div>
-
+                <div class="content has-text-justified">
                     <p>
-                        The table above shows the results of the considered LLM-assessor pairs for three minimum accuracy thresholds (0.8,
+                        The table below shows the results of the considered LLM-assessor pairs for three minimum accuracy thresholds (0.8,
                         0.9, 0.95).
                         At a threshold of 0.8, the top LLM-assessor pairs perform well, as assessors can reliably
                         predict
@@ -372,19 +357,35 @@
                         significantly, as assessors face greater difficulty in anticipating failures. The
                         best-performing
                         pairs consistently include LLMs with high average accuracy, which aligns with expectations.
-                        Interestingly, the ranking of LLM-assessor pairs is not preserved across different thresholds,
-                        highlighting variations in assessor effectiveness. These findings underscore the importance of
-                        developing AI systems capable of operating under strict error constraints, particularly in
-                        high-risk
-                        scenarios. Future research will explore even higher thresholds to further enhance AI safety.
                     </p>
+                    </div>
+                <div style="width: 100%; margin: 0 auto;">
+                    {% set leaderboard = leaderboard_ID %}
+                    {% set all_llms = all_llms %}
+                    {% set all_methods = all_methods %}
+                    {% set all_features = all_features %}
+                    {% include "leaderboard.html" %}
                 </div>
+
+
             </div>
 
             <div class="item" style="text-align: center; margin-bottom: 4rem;">
                 <h1 class="title is-4 has-text-centered">
                     <b>Out-of-distribution results</b>
                 </h1>
+
+                <div class="content has-text-justified">
+                    <p>
+                        The table below shows the results of the considered LLM-assessor pairs for three minimum accuracy thresholds (0.8,
+                        0.9,
+                        0.95).
+                        The lower values with respect to the in-distribution case highlight the difficulty of predicting
+                        performance OOD. Additionally, the top pairs differ from the in-distribution ones, suggesting
+                        the
+                        latter may not have the highest generalisation power.
+                    </p>
+
 
                 <div style="width: 100%; margin: 0 auto;">
                     {% set leaderboard = leaderboard_OOD %}
@@ -397,16 +398,6 @@
 
 
 
-                     <div class="content has-text-justified">
-                    <p>
-                        The table above shows the results of the considered LLM-assessor pairs for three minimum accuracy thresholds (0.8,
-                        0.9,
-                        0.95).
-                        The lower values with respect to the in-distribution case highlight the difficulty of predicting
-                        performance OOD. Additionally, the top pairs differ from the in-distribution ones, suggesting
-                        the
-                        latter may not have the highest generalisation power.
-                    </p>
                 </div>
             </div>
 
@@ -435,7 +426,11 @@
                     Overall, current LLMs are very poorly predictable, particularly at low error thresholds,
                     which is critical for high-stakes scenarios.
                     PredictaBoard makes predictability the key consideration, stimulating research into more predictable
-                    AI systems.
+                    AI systems, critical for high-stakes scenarios.
+                    These findings underscore the importance of
+                    developing AI systems capable of operating under strict error constraints, particularly in
+                    high-risk
+                    scenarios. Future research will explore even higher thresholds to further enhance AI safety.
                 </h2>
             </div>
         </div>
