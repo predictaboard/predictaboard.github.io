@@ -74,6 +74,12 @@ def render_template():
     with open(DATA_DIR / "bbh_assessor_results.json", "r") as f:
         leaderboard_OOD = json.load(f)
 
+    # Merge results from both leaderboard_ID and leaderboard_OOD for unique values
+    merged_results = list(leaderboard_ID) + list(leaderboard_OOD)   
+    all_llms = sorted({item['llm'] for item in merged_results if not item.get('warning')})
+    all_methods = sorted({item['predictive_method'] for item in merged_results if not item.get('warning')})
+    all_features = sorted({item['features'] for item in merged_results if not item.get('warning')})
+
     leaderboard_ID = {
         "name": "ID",
         "results": leaderboard_ID
@@ -85,13 +91,16 @@ def render_template():
 
     html = template.render(
         leaderboard_ID=leaderboard_ID,
-        leaderboard_OOD=leaderboard_OOD
+        leaderboard_OOD=leaderboard_OOD,
+        all_llms=all_llms,
+        all_methods=all_methods,
+        all_features=all_features,
     )
     with open(OUTPUT_HTML, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Rendered HTML to {OUTPUT_HTML}")
 
 if __name__ == "__main__":
-    # download_files() TODO temporarily disabled
+    download_files()
     process_csv_to_json()
     render_template()
