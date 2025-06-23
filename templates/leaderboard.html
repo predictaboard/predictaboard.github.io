@@ -1,6 +1,7 @@
 <!-- Filter and Sort controls -->
-<div class="mb-3 d-flex justify-content-between align-items-center" style="gap:0.5rem; flex-wrap: wrap;">
+<div class="mb-3 d-flex justify-content-between align-items-center leaderboard-filters-container" style="gap:0.5rem; flex-wrap: wrap;">
     <div style="flex-shrink: 0; display: flex; gap: 0.5em; align-items: center; flex-wrap: wrap;">
+        <div>
         <label for="sort-select-{{leaderboard.name}}" style="margin-right: 0.5em;">Sort by:</label>
         <select id="sort-select-{{leaderboard.name}}" style="width: auto; display: inline-block;">
             <option value="0.8 PVR">0.8 PVR</option>
@@ -8,25 +9,34 @@
             <option value="0.95 PVR">0.95 PVR</option>
             <option value="Area under ARC">Area under ARC</option>
         </select>
+        </div>
+        <div>
         <label for="llm-filter-{{leaderboard.name}}" style="margin-left: 1em;">LLM:</label>
         <select id="llm-filter-{{leaderboard.name}}" class="selectpicker" multiple data-live-search="true" data-width="250px" data-none-selected-text="All LLMs">
             {% for llm in all_llms %}
             <option value="{{ llm }}">{{ llm }}</option>
             {% endfor %}
         </select>
+        </div>
+        <div>
         <label for="method-filter-{{leaderboard.name}}" style="margin-left: 1em;">Predictive Method:</label>
         <select id="method-filter-{{leaderboard.name}}" class="selectpicker" multiple data-live-search="true" data-width="150px" data-none-selected-text="All Methods">
             {% for method in all_methods %}
             <option value="{{ method }}">{{ method }}</option>
             {% endfor %}
-        </select>
+        </select>   
+        </div>
+        <div>
         <label for="features-filter-{{leaderboard.name}}" style="margin-left: 1em;">Features:</label>
         <select id="features-filter-{{leaderboard.name}}" class="selectpicker" multiple data-live-search="true" data-width="150px" data-none-selected-text="All Features">
             {% for feat in all_features %}
             <option value="{{ feat }}">{{ feat }}</option>
             {% endfor %}
         </select>
-        <button id="reset-filters-btn-{{leaderboard.name}}" type="button" class="btn btn-secondary btn-sm" style="margin-left: 1em;">Reset Filters</button>
+        </div>
+        <div>
+        <button id="reset-filters-btn-{{leaderboard.name}}" type="button" class="btn btn-secondary btn-sm ml-auto" style="margin-left: auto;">Reset Filters</button>
+        </div>
     </div>
 </div>
 
