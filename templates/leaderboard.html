@@ -1,0 +1,32 @@
+<div class="tabcontent" id="leaderboard-{{leaderboard.name}}">
+    <table class="table scrollable data-table">
+        <thead>
+            <tr>
+                <th>LLM</th>
+                <th>Predictive Method</th>
+                <th>Features</th>
+                <th>0.8 PVR</th>
+                <th>0.9 PVR</th>
+                <th>0.95 PVR</th>
+                <th>Area under ARC</th>
+                <!-- <th>Pair Name</th> -->
+                <!-- <th>Predictive Method Features</th> -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in leaderboard.results if not item.warning %}
+            <tr>
+                <td style="text-align: left;">{{ item['llm'] }}</td>
+                <td>{{ item['predictive_method'] }}</td>
+                <td>{{ item['features'] }}</td>
+                <td>{{ item['0.8 PVR'] }}</td>
+                <td>{{ item['0.9 PVR'] }}</td>
+                <td>{{ item['0.95 PVR'] }}</td>
+                <td>{{ item['Area under ARC'] }}</td>
+                <!-- <td>{{ item['pair_name'] }}</td> -->
+                <!-- <td>{{ item['predictive_method_features'] }}</td> -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
